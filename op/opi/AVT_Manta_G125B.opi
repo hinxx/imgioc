@@ -28,8 +28,8 @@
   <show_ruler>true</show_ruler>
   <snap_to_geometry>true</snap_to_geometry>
   <widget_type>Display</widget_type>
-  <width>800</width>
-  <wuid>66d6c560:15f06622989:-76fe</wuid>
+  <width>600</width>
+  <wuid>66d6c560:15f06622989:-791b</wuid>
   <x>713</x>
   <y>157</y>
   <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
@@ -68,7 +68,7 @@
     <visible>true</visible>
     <widget_type>Linking Container</widget_type>
     <width>716</width>
-    <wuid>66d6c560:15f06622989:-76fc</wuid>
+    <wuid>66d6c560:15f06622989:-7919</wuid>
     <x>0</x>
     <y>0</y>
   </widget>
@@ -108,14 +108,14 @@
     <visible>true</visible>
     <widget_type>Linking Container</widget_type>
     <width>390</width>
-    <wuid>66d6c560:15f06622989:-76fb</wuid>
+    <wuid>66d6c560:15f06622989:-7918</wuid>
     <x>0</x>
     <y>830</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
     <actions hook="false" hook_all="false">
       <action type="OPEN_DISPLAY">
-        <path>AVT_Manta_G235B-features.opi</path>
+        <path>AVT_Manta_G125B-features.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
         </macros>
@@ -163,7 +163,7 @@ $(pv_value)</tooltip>
     <visible>true</visible>
     <widget_type>Action Button</widget_type>
     <width>316</width>
-    <wuid>66d6c560:15f06622989:-76fa</wuid>
+    <wuid>66d6c560:15f06622989:-7917</wuid>
     <x>400</x>
     <y>830</y>
   </widget>
