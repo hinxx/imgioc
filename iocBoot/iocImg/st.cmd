@@ -15,25 +15,25 @@ epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES", "30000000")
 epicsEnvSet("PREFIX", "CAM1:")
 epicsEnvSet("PORT",   "CAM1")
 epicsEnvSet("QSIZE",  "20")
-epicsEnvSet("XSIZE",  "1936")
-epicsEnvSet("YSIZE",  "1216")
+epicsEnvSet("XSIZE",  "1292")
+epicsEnvSet("YSIZE",  "964")
 epicsEnvSet("NCHANS", "2048")
 epicsEnvSet("CBUFFS", "500")
 
-aravisCameraConfig("$(PORT)", "Allied Vision Technologies-50-0503355057")
+aravisCameraConfig("$(PORT)", "Allied Vision Technologies-50-0503374606")
 
 # asynSetTraceMask("$(PORT)", 0, 0x21)
 dbLoadRecords("$(ADARAVIS)/db/aravisCamera.template",   "P=$(PREFIX),R=det1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 dbLoadRecords("$(ADARAVIS)/db/AVT_Manta_G125B.template","P=$(PREFIX),R=det1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 
 # Create a standard arrays plugin
-# Allow for images up to 1936x1216x3 for RGB
+# Allow for images up to 1292x964x3 for RGB
 NDStdArraysConfigure("$(PORT)Image1", 5, 0, "$(PORT)", 0, 0)
-dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=$(PORT)Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int16,FTVL=SHORT,NELEMENTS=7062528")
+dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image1:,PORT=$(PORT)Image1,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int16,FTVL=SHORT,NELEMENTS=3736464")
 NDStdArraysConfigure("$(PORT)Image2", 5, 0, "$(PORT)", 0, 0)
-dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image2:,PORT=$(PORT)Image2,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int16,FTVL=SHORT,NELEMENTS=7062528")
+dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image2:,PORT=$(PORT)Image2,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int16,FTVL=SHORT,NELEMENTS=3736464")
 NDStdArraysConfigure("$(PORT)Image3", 5, 0, "$(PORT)", 0, 0)
-dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image3:,PORT=$(PORT)Image3,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int16,FTVL=SHORT,NELEMENTS=7062528")
+dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image3:,PORT=$(PORT)Image3,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PORT),TYPE=Int16,FTVL=SHORT,NELEMENTS=3736464")
 
 # Load all other plugins using commonPlugins.cmd
 < $(TOP)/iocBoot/$(IOC)/commonPlugins.cmd
