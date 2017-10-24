@@ -7,7 +7,7 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
-cd $NG3E_IOCS/imgioc-master+1/iocBoot/iocImg || exit 1
-#../../bin/linux-x86_64/imgApp st.cmd
-gdb ../../bin/linux-x86_64/imgApp
+cd $NG3E_IOCS/imgioc-master+2/iocBoot/iocImg || exit 1
+../../bin/linux-x86_64/imgApp st.cmd
+#gdb ../../bin/linux-x86_64/imgApp
 
