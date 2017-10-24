@@ -49,7 +49,7 @@ dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image3:,PORT=$
 ################################################################################
 
 # Resource string: USB::VID::PID::SERIAL::RAW
-epicsEnvSet("RSCSTR", "USB::0x1313::0x8087::M00407309::RAW")
+epicsEnvSet("RSCSTR", "USB::0x1313::0x8087::M00408690::RAW")
 
 epicsEnvSet("PREFIX", "CCS1:")
 epicsEnvSet("PORT",   "CCS1")
