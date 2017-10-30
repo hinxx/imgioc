@@ -43,7 +43,6 @@ dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image3:,PORT=$
 #asynSetTraceMask("$(PORT)",0,255)
 #asynSetTraceMask("$(PORT)",0,3)
 
-
 ################################################################################
 ## Thorlabs CCS175
 ################################################################################
@@ -80,6 +79,31 @@ dbLoadRecords("$(ADCORE)/ADApp/Db/NDStdArrays.template", "P=$(PREFIX),R=trace3:,
 
 #asynSetTraceIOMask("$(PORT)",0,2)
 #asynSetTraceMask("$(PORT)",0,255)
+
+################################################################################
+## Thorlabs PM100USB
+################################################################################
+
+epicsEnvSet("PREFIX", "PM100:")
+epicsEnvSet("PORT",   "PM100")
+
+#var streamDebug 1
+
+# usbtmcConfigure(port, vendorNum, productNum, serialNumberStr, priority, flags)
+usbtmcConfigure("$(PREFIX)")
+asynSetTraceIOMask("$(PREFIX)",0,0xff)
+#asynSetTraceMask("$(PREFIX)",0,0xff)
+
+# Load record instances
+dbLoadRecords("$(TLPM100)/db/tlPM100.template","P=$(PREFIX),R=,PORT=$(PORT)")
+dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=asyn,PORT=$(PORT),ADDR=0,OMAX=100,IMAX=100")
+
+# For Autosave, before iocInit is called
+#set_requestfile_path(".")
+#set_savefile_path("./autosave")
+#set_pass0_restoreFile("auto_settings.sav")
+#set_pass1_restoreFile("auto_settings.sav")
+
 
 # optional custom PVs
 #dbLoadRecords("$(TOP)/db/img.db", "P=IMG:,R=")
