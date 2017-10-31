@@ -87,12 +87,14 @@ dbLoadRecords("$(ADCORE)/ADApp/Db/NDStdArrays.template", "P=$(PREFIX),R=trace3:,
 epicsEnvSet("PREFIX", "PM100:")
 epicsEnvSet("PORT",   "PM100")
 
+epicsEnvSet("STREAM_PROTOCOL_PATH", "$(TLPM100)/db")
+
 #var streamDebug 1
 
 # usbtmcConfigure(port, vendorNum, productNum, serialNumberStr, priority, flags)
-usbtmcConfigure("$(PREFIX)")
-asynSetTraceIOMask("$(PREFIX)",0,0xff)
-#asynSetTraceMask("$(PREFIX)",0,0xff)
+usbtmcConfigure("$(PORT)")
+asynSetTraceIOMask("$(PORT)",0,0xff)
+#asynSetTraceMask("$(PORT)",0,0xff)
 
 # Load record instances
 dbLoadRecords("$(TLPM100)/db/tlPM100.template","P=$(PREFIX),R=,PORT=$(PORT)")
