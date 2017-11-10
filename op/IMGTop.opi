@@ -185,8 +185,8 @@ $(pv_value)</tooltip>
     <widget_type>Action Button</widget_type>
     <width>194</width>
     <wuid>b49da55:15ea9f15248:-7d75</wuid>
-    <x>402</x>
-    <y>45</y>
+    <x>7</x>
+    <y>180</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
     <actions hook="false" hook_all="false">
@@ -242,7 +242,64 @@ $(pv_value)</tooltip>
     <widget_type>Action Button</widget_type>
     <width>194</width>
     <wuid>1fdf6988:15f6dd092e4:-7f9f</wuid>
-    <x>204</x>
-    <y>45</y>
+    <x>7</x>
+    <y>112</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
+    <actions hook="false" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>opi/lt59_main.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <P>LT59:</P>
+          <R></R>
+        </macros>
+        <mode>1</mode>
+        <description>LairdTech PR59</description>
+      </action>
+    </actions>
+    <alarm_pulsing>false</alarm_pulsing>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color name="ioc_write_bg" red="115" green="223" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>6</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Noto Sans" height="9" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color name="Gray_14" red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>48</height>
+    <image></image>
+    <name>Menu Button_3</name>
+    <push_action_index>0</push_action_index>
+    <pv_name></pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <style>0</style>
+    <text>$(actions)</text>
+    <toggle_button>false</toggle_button>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <visible>true</visible>
+    <widget_type>Action Button</widget_type>
+    <width>194</width>
+    <wuid>-5201e5c:15fa5fc3ee0:-7d45</wuid>
+    <x>7</x>
+    <y>246</y>
   </widget>
 </display>
