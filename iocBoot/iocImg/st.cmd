@@ -20,7 +20,7 @@ epicsEnvSet("YSIZE",  "964")
 epicsEnvSet("NCHANS", "2048")
 epicsEnvSet("CBUFFS", "500")
 
-aravisCameraConfig("$(PORT)", "Allied Vision Technologies-50-0503374606")
+aravisCameraConfig("$(PORT)", "Allied Vision Technologies-50-0503374607")
 
 # asynSetTraceMask("$(PORT)", 0, 0x21)
 dbLoadRecords("$(ADARAVIS)/db/aravisCamera.template",   "P=$(PREFIX),R=det1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
@@ -44,11 +44,11 @@ dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX),R=image3:,PORT=$
 #asynSetTraceMask("$(PORT)",0,3)
 
 ################################################################################
-## Thorlabs CCS175
+## Thorlabs CCS100
 ################################################################################
 
 # Resource string: USB::VID::PID::SERIAL::RAW
-epicsEnvSet("RSCSTR", "USB::0x1313::0x8087::M00408690::RAW")
+epicsEnvSet("RSCSTR", "USB::0x1313::0x8081::M00407489::RAW")
 
 epicsEnvSet("PREFIX", "CCS1:")
 epicsEnvSet("PORT",   "CCS1")
@@ -99,6 +99,45 @@ asynSetTraceIOMask("$(PORT)",0,0xff)
 # Load record instances
 dbLoadRecords("$(TLPM100)/db/tlPM100.template","P=$(PREFIX),R=,PORT=$(PORT)")
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=asyn,PORT=$(PORT),ADDR=0,OMAX=100,IMAX=100")
+
+################################################################################
+## Lairdtech PR59
+################################################################################
+
+epicsEnvSet("DEVICE",      "/dev/ttyUSB0")
+epicsEnvSet("SERIAL_PORT", "LT59_SERIAL")
+epicsEnvSet("PREFIX",      "LT59:")
+epicsEnvSet("PORT",        "LT59")
+
+# drvAsynSerialPortConfigure(port, ttyName, priority, noAutoConnect, noProcessEosIn)
+drvAsynSerialPortConfigure("$(SERIAL_PORT)", "$(DEVICE)", 0, 0, 0)
+asynSetOption("$(SERIAL_PORT)", 0, "baud",   "115200")
+asynSetOption("$(SERIAL_PORT)", 0, "bits",   "8")
+asynSetOption("$(SERIAL_PORT)", 0, "parity", "none")
+asynSetOption("$(SERIAL_PORT)", 0, "stop",   "1")
+asynSetOption("$(SERIAL_PORT)", 0, "clocal", "Y")
+asynSetOption("$(SERIAL_PORT)", 0, "crtscts","N")
+
+asynOctetSetInputEos("$(SERIAL_PORT)", 0, "\r\n")
+asynOctetSetOutputEos("$(SERIAL_PORT)", 0, "\r")
+
+#asynSetTraceIOMask("$(SERIAL_PORT)",0,0xff)
+#asynSetTraceMask("$(SERIAL_PORT)",0,0xff)
+
+# LTPR59Configure(const char *portName, const char *serialPort);
+LTPR59Configure($(PORT), $(SERIAL_PORT))
+#asynSetTraceIOMask("$(PORT)",0,0xff)
+#asynSetTraceMask("$(PORT)",0,0xff)
+
+# Load record instances
+dbLoadRecords("$(LAIRDTECHPR59)/db/lairdtechPR59_main.template", "P=$(PREFIX),R=,PORT=$(PORT),SERIAL_PORT=$(SERIAL_PORT),ADDR=0,TIMEOUT=1")
+dbLoadRecords("$(LAIRDTECHPR59)/db/lairdtechPR59_pid.template",  "P=$(PREFIX),R=,PORT=$(PORT),ADDR=0,TIMEOUT=1")
+dbLoadRecords("$(LAIRDTECHPR59)/db/lairdtechPR59_temp.template", "P=$(PREFIX),R=,T=1,PORT=$(PORT),ADDR=0,TIMEOUT=1")
+dbLoadRecords("$(LAIRDTECHPR59)/db/lairdtechPR59_temp.template", "P=$(PREFIX),R=,T=4,PORT=$(PORT),ADDR=0,TIMEOUT=1")
+# TODO: Add support for other temperature sensors
+dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=asyn,PORT=$(PORT),ADDR=0,OMAX=100,IMAX=100")
+
+################################################################################
 
 # For Autosave, before iocInit is called
 #set_requestfile_path(".")
